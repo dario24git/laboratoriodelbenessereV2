@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import cloudflare from "@astrojs/cloudflare";
+import alpinejs from "@astrojs/alpinejs";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
@@ -23,6 +24,6 @@ export default defineConfig({
   },
 
   site: 'https://lexingtonthemes.com',
-  integrations: [sitemap(), mdx(), react()],
+  integrations: [sitemap(), mdx(), react(), alpinejs()],
   adapter: cloudflare()
 });

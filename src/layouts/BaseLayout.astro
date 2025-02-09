@@ -1,0 +1,19 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Footer from "@/components/global/Footer.astro";
+import Header from "@/components/Header.astro";
+import { ClientRouter } from 'astro:transitions';
+---
+
+<html lang="en">
+  <head>
+    <ClientRouter />
+    <BaseHead />
+  </head>
+  <body class="2xl:max-w-7xl mx-auto flex flex-col min-h-svh">
+    <div class="tiled-background"></div>
+    <Header />
+    <main class="grow"><slot /></main>
+    <Footer />
+  </body>
+</html>

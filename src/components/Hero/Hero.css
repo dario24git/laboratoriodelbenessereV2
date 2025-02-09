@@ -1,0 +1,153 @@
+.hero-slider {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-swiper,
+.swiper-slide,
+.hero-slide {
+    width: 100vw;
+    height: 100vh;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    display: none;
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 120px;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    text-align: left;
+}
+
+.text-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.hero-title {
+    font-size: clamp(4rem, 8vw, 12rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    letter-spacing: -2px;
+    color: #ffffff;
+}
+
+.hero-paragraph {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 400;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-button {
+    display: inline-block;
+    background: white;
+    color: black;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+.hero-button:hover {
+    transform: translateY(-2px);
+}
+
+.swipe-indicator {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 10;
+}
+
+.hero-pagination {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 200px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 10;
+}
+
+.hero-pagination-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        bottom: 80px;
+        padding: 0 20px;
+    }
+    
+    .text-container {
+        padding: 0 20px;
+    }
+    
+    .hero-title {
+        font-size: clamp(3rem, 6vw, 4rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        margin-bottom: 0.8rem;
+    }
+    
+    .hero-paragraph {
+        font-size: clamp(0.875rem, 1.2vw, 1rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .swipe-indicator {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .hero-pagination {
+        bottom: 20px;
+        left: 20px;
+    }
+}

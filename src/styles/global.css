@@ -1,0 +1,110 @@
+
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+@layer components {
+  .prose-styles {
+    @apply hover:prose-a:text-black prose text-lg  prose-blockquote:border-l-regent-600 prose-blockquote:text-gray-500 prose-headings:font-medium prose-headings:text-black  prose-li:marker:text-regent-500 text-gray-500 max-w-3xl;
+  }
+}
+@theme {
+/* Typography*/
+  --font-sans: "Inter", sans-serif;
+  /* Colors */
+  /* Black */
+  --color-black: #0C1824;
+  
+  /* Regent Shades */
+  --color-regent-50: #F4F9FB;
+  --color-regent-100: #E9F3F6;
+  --color-regent-200: #D7E9EF;
+  --color-regent-300: #C1DCE6;
+  --color-regent-400: #AFD2DF;
+  --color-regent-500: #ffd28e;
+  --color-regent-600: #66A9C2;
+  --color-regent-700: #3F839C;
+  --color-regent-800: #2A596A;
+  --color-regent-900: #142B33;
+  
+   /* Lila Shades */
+   --color-lila-50: #F8F8FC;
+   --color-lila-100: #F1F2F9;
+   --color-lila-200: #DFE2F2;
+   --color-lila-300: #CDD1EA;
+   --color-lila-400: #B3BBE0;
+   --color-lila-500: #9CA6D6;
+   --color-lila-600: #8894CE;
+   --color-lila-700: #7683C6;
+   --color-lila-800: #5969BA;
+   --color-lila-900: #3C4A90;
+   
+   /* Yellow Shades */
+   --color-yellow-50: #FFFCFA;
+   --color-yellow-100: #FFFAF5;
+   --color-yellow-200: #FFF5EB;
+   --color-yellow-300: #FFF0E0;
+   --color-yellow-400: #FFE8D1;
+   --color-yellow-500: #FFE3C7;
+   --color-yellow-600: #FFC78F;
+   
+   /* Pink Shades */
+   --color-pink-50: #FEFBFB;
+   --color-pink-100: #FDF6F8;
+   --color-pink-200: #FBEAED;
+   --color-pink-300: #F9DDE2;
+   --color-pink-400: #F7D4DA;
+   --color-pink-500: #F4C4CD;
+   --color-pink-600: #EFA9B6;
+
+  }
+  @font-face {
+      font-family: "Basteleur-Moonlight";
+      src: url("/fonts/Basteleur-Moonlight.woff") format("woff");
+      font-weight: 300;
+      font-style: normal;
+  }
+  
+  body {
+    font-family: "Basteleur-Moonlight", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  /* Use variable font if supported */
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}
+:root {
+  /* Typography stylistic sets for Inter*/
+  font-family: Inter, sans-serif;
+  font-feature-settings: "liga" 1, "calt" 1,
+    /* Contextual Alternates */ "dlig" 1, /* Discretionary Ligatures */ "ss07" 1,
+    /* fSquare punctuation */ "ss08" 1, /* Square quotes */ "zero" 1,
+    /* Slashed zero */ "tnum" 1, /* Tabular numbers */ "cv03" 1,
+    /* Open six */ "cv04" 1, /* Open nine */ "cv01" 1,
+    /* Alternate one */ "cv09", /* Flat-top three */ "cv02" 1; /* Open 4 */
+    /* Styling color blocks */
+  --astro-code-color-text: theme("colors.yellow.300");
+  --astro-code-color-background: theme("colors.regent.900");
+  --astro-code-token-constant: theme("colors.regent.400");
+  --astro-code-token-string: theme("colors.lila.500");
+  --astro-code-token-comment: theme("colors.regent.700");
+  --astro-code-token-keyword: theme("colors.yellow.300");
+  --astro-code-token-parameter: theme("colors.pink.500");
+  --astro-code-token-function: theme("colors.pink.600");
+  --astro-code-token-string-expression: theme("colors.lila.300");
+  --astro-code-token-punctuation: theme("colors.gray.500");
+  --astro-code-token-link: theme("colors.gray.800");
+}
+.tiled-background {
+  background-image: url('/test1.svg');
+  background-repeat: repeat;
+  background-size: 700px;
+  opacity: 0.15;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}

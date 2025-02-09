@@ -1,0 +1,80 @@
+---
+const paragraphs = [
+  "Mi chiamo Barbara, sono nata a Milano il 24 Febbraio 1972.",
+  "Anima molto sensibile, già in tenera età comincio ad affrontare le diverse e pesanti difficoltà, ricercando il senso profondo, in connessione con la mia parte spirituale e con conseguente naturalezza, ma inconsapevolmente, sviluppo qualità sensitive e abilità psichiche.",
+  "Con la malattia e la perdita di mio padre, si attiva in me un potenziale, un talento; la cura attraverso il tocco amorevole delle mani.",
+  "Da qui, frequento e termino, percorsi di medicina ayurvedica e abyangam, presso il Centro Joythinat a Genova; massaggio thailandese del corpo e reflessogeno del piede al Centro Aura Universalmente a Novara.",
+  "Proseguo arricchendo le formazioni con percorsi diversi; cristallo terapia, fiori di bach in vari centri olistici di Milano, postura ed evoluzione presso il Centro di Osteopatia del dott. Zampi a Trento.",
+  "Rientrata da un viaggio in Africa, in Burkina Faso, per studiare le danze africane, mi iscrivo e porto a termine un percorso formativo triennale di danzaterapia, metodo Trasmuda e counseling esistenziale a mediazione corporea ideato dalla dott.ssa Renata Righetti.",
+  "Da sempre attratta dalle scienze esoteriche, ho seguito percorsi di studio di magia, abilità psichica, guarigione. Oggi frequento una scuola di medianità.",
+  "Studi più recenti, sulla dimensione della \"mente\", sul potere creativo del pensiero, sui principi della fisica quantistica, sulla legge di attrazione, hanno contribuito a migliorare la mia esistenza, con pratiche semplici, ma efficaci.",
+  "Oggi, vivo manifestando i miei talenti, costruendo percorsi \"su misura\", che portano \"dentro\", alla scoperta meravigliosa di Sè!"
+];
+---
+
+<section class="relative overflow-hidden bg-white pt-24 lg:pt-48">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Title Section -->
+    <div class="text-center mb-16 lg:mb-24">
+      <h1 class="text-2xl md:text-5xl lg:text-7xl font-medium text-black">
+        La Mia Storia <span class="lg:block">Il Mio Percorso</span>
+      </h1>
+      <p class="font-medium mt-4 text-lg text-black/80 mx-auto max-w-2xl text-balance">
+        Un viaggio attraverso le esperienze che mi hanno portato a scoprire e sviluppare i miei doni
+      </p>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 pb-8">
+      <!-- Left column - Images -->
+      <div class="relative space-y-6">
+        <div class="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
+          <img
+            src="/webp/barbara1.webp"
+            alt="Barbara"
+            class="h-full w-full object-cover"
+          />
+        </div>
+        <div class="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
+          <img
+            src="/videos/barbara.gif"
+            alt="Barbara in movimento"
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Right column - Text -->
+      <div class="prose prose-xl max-w-none">
+        {paragraphs.map((paragraph) => <p class="text-gray-600 leading-relaxed mb-6">{paragraph}</p>)}
+        <div class="text-center py-12">
+          <span class="text-4xl italic font-medium text-black/80">Barbara🌸</span>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<style>
+  .prose p {
+    text-align: justify;
+    hyphens: none;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+  
+  @media (max-width: 1024px) {
+    .prose p {
+      text-align: left;
+    }
+  }
+
+  .aspect-[3/4] {
+    aspect-ratio: 3/4;
+  }
+  .aspect-[4/3] {
+    aspect-ratio: 4/3;
+  }
+</style>

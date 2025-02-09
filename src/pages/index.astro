@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Hero } from "../components/Hero/Hero";
+import "../styles/global.css";
+
+const heroData = [
+    {
+        subtitle: "Benvenuti al",
+        title: "Laboratorio del Benessere",
+        background: "/webp/acaso2.webp",
+        paragraph: "Diversi percorsi per il tuo benessere fisico e spirituale",
+        button: {
+            text: "Scopri i nostri servizi",
+            link: "/servizi"
+        }
+    },
+    {
+        subtitle: "Aromaterapia",
+        title: "Oli Essenziali",
+        background: "/webp/aromaterapia1.webp",
+        paragraph: "Scopri il potere curativo degli oli essenziali per il tuo benessere",
+        button: {
+            text: "Scopri di più",
+            link: "/aromaterapia"
+        }
+    },
+    {
+        subtitle: "Trattamenti",
+        title: "Massaggi con Pietre",
+        background: "/webp/pietrelettino.webp",
+        paragraph: "Il calore riporta il vigore e la vitalità",
+        button: {
+            text: "Prenota ora",
+            link: "/trattamenti"
+        }
+    },
+    {
+        subtitle: "Terapia",
+        title: "Vasi Insieme",
+        background: "/webp/vasiinsieme.webp",
+        paragraph: "Il piacere di creare, il benessere di vivere",
+        button: {
+            text: "Prenota ora",
+            link: "/trattamenti"
+        }
+    },
+];
+---
+
+<Layout
+    title="Laboratorio del Benessere | Homepage"
+    description="Un percorso olistico per il tuo benessere fisico e mentale"
+>
+    <main class="page-content">
+        <Hero
+            client:load
+            heroType="fullPageSlider"
+            data={heroData}
+        />
+    </main>
+
+</Layout>

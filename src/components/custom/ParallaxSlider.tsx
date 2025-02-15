@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
-// TypeScript type definition for a slide (optional, but good practice)
 type Slide = {
   image: string;
   title: string;
-  description: string;
+  subtitle: string;
 };
 
 interface ParallaxSliderProps {
@@ -12,66 +13,34 @@ interface ParallaxSliderProps {
 }
 
 export default function ParallaxSlider({ slides }: ParallaxSliderProps) {
-  // State to manage values that change over time and are used in rendering
-  const [inView, setInView] = useState(false);  // Tracks if the component is in the viewport
-  const [yValue, setYValue] = useState('0%'); // Stores the calculated 'y' transform value
-  const [MotionDiv, setMotionDiv] = useState<any>(null); //To store and use motion.div
-
-  // Ref to attach to the motion.div, needed for IntersectionObserver
+  const [inView, setInView] = useState(false);
+  const [yValue, setYValue] = useState('0%');
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // --- Browser-Only Execution Block ---
     if (typeof window !== 'undefined') {
+      const { scrollYProgress } = useScroll();
+      const y = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
+      const [ref, view] = useInView({ triggerOnce: true });
 
-      // 1. Asynchronously import framer-motion and react-intersection-observer.
-      //    This is the most robust way to prevent SSR issues.
-      async function loadAndInitialize() {
-        try {
-          // 2. Get the necessary hooks and functions
-          const { motion, useScroll, useTransform } = await import('framer-motion');
-          const { useInView } = await import('react-intersection-observer');
-
-          // 3. Set up scroll tracking and the y transform
-          const { scrollYProgress } = useScroll();
-          const y = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
-
-          // 4. Set up Intersection Observer
-          const [ref, view] = useInView({ triggerOnce: true });
-          setInView(view);
-
-          setMotionDiv(motion.div);
-
-          // 5. Apply the ref function to our container
-          if (containerRef.current) {
-            ref(containerRef.current);
-          }
-
-          // 6. Subscribe to changes in the 'y' value and update state
-          const unsubscribeY = y.onChange((latest: string) => {
-            setYValue(latest);
-          });
-
-          return () => {
-            unsubscribeY();
-          };
-        } catch (error) {
-          console.error('Error initializing ParallaxSlider:', error);
-        }
+      setInView(view);
+      if (containerRef.current) {
+        ref(containerRef.current); // Apply the ref function directly
       }
 
-      loadAndInitialize();
+      const unsubscribeY = y.onChange((latest) => {
+        setYValue(latest);
+      });
+
+      return () => {
+        unsubscribeY();
+      };
     }
   }, []);
 
-  // Conditionally render based on whether MotionDiv has been loaded
-  if (!MotionDiv) {
-    return null; // Or a loading spinner, etc.
-  }
-
   return (
     <div className="h-screen overflow-hidden relative">
-      <MotionDiv
+      <motion.div
         style={{ y: yValue }}
         className="absolute inset-0 flex flex-col"
       >
@@ -80,7 +49,7 @@ export default function ParallaxSlider({ slides }: ParallaxSliderProps) {
             key={index}
             className="h-screen w-full flex items-center justify-center relative"
           >
-            <MotionDiv
+            <motion.div
               ref={containerRef}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -89,12 +58,12 @@ export default function ParallaxSlider({ slides }: ParallaxSliderProps) {
               style={{ backgroundImage: `url(${slide.image})` }}
             />
             <div className="relative z-10 text-center text-white">
-              <h2 className="text-4xl font-bold mb-4">{slide.title}</h2>
-              <p className="text-xl">{slide.description}</p>
+              <h1 className="text-5xl font-bold mb-4">{slide.title}</h1>
+              <p className="text-xl">{slide.subtitle}</p>
             </div>
           </section>
         ))}
-      </MotionDiv>
+      </motion.div>
     </div>
   );
 }

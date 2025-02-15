@@ -6,6 +6,7 @@ import react from "@astrojs/react";
 import cloudflare from "@astrojs/cloudflare";
 import alpinejs from "@astrojs/alpinejs";
 export default defineConfig({
+  output: 'static',
   vite: {
     plugins: [tailwindcss()],
   },

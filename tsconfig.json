@@ -13,6 +13,9 @@
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true
   }
 }

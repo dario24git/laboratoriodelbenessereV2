@@ -60,6 +60,8 @@ const isHome = pathname === "/" || pathname === "";
   // Function to handle scroll behavior
   function handleScroll() {
     const header = document.querySelector('header');
+    if (!header) return;
+
     if (window.scrollY > 0) {
       header.classList.add('scrolled');
     } else {

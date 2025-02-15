@@ -1,8 +1,8 @@
-import React, { type FC, useEffect, useRef } from 'react';
+import { type FC, useEffect, useRef, type ReactNode } from 'react';
 import './FadeIn.css';
 
 interface FadeInProps {
-    children: React.ReactNode;
+    children: ReactNode;
     delay?: number;
 }
 

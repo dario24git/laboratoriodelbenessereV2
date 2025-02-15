@@ -56,6 +56,18 @@
    --color-pink-500: #F4C4CD;
    --color-pink-600: #EFA9B6;
 
+   /* Light Blue shades */
+   --color-light-blue-50: #cdefee;
+   --color-light-blue-100: #e9f3fd;
+   --color-light-blue-200: #d1eafb;
+   --color-light-blue-300: #b8d9f9;
+   --color-light-blue-400: #a0c7f7;
+   --color-light-blue-500: #87b5f5;
+   --color-light-blue-600: #6e9ef3;
+   --color-light-blue-700: #5568d0;
+   --color-light-blue-800: #3f41a6;
+   --color-light-blue-900: #2a2f73;
+
   }
   @font-face {
       font-family: "Basteleur-Moonlight";

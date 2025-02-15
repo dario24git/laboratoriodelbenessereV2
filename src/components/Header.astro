@@ -20,7 +20,7 @@ const isHome = pathname === "/" || pathname === "";
 		<div class="nav-wrapper">
 			<div class="internal-links">
 				<HeaderLink href="/" >Home</HeaderLink>
-				<HeaderLink href="/blog/blog" >Blog</HeaderLink>
+				<HeaderLink href="/blog" >Blog</HeaderLink>
 				<HeaderLink href="/about" >About</HeaderLink>
 			</div>
 			<div class="social-links">
@@ -55,6 +55,51 @@ const isHome = pathname === "/" || pathname === "";
 		</div>
 	</nav>
 </header>
+
+<script>
+  // Function to handle scroll behavior
+  function handleScroll() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 0) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+
+  function setupMobileMenu() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const navWrapper = document.querySelector('.nav-wrapper');
+    const nav = document.querySelector('nav');
+
+    if (mobileMenu && navWrapper && nav) {
+      // Remove any existing event listeners by cloning and replacing the button
+      const newMobileMenu = mobileMenu.cloneNode(true) as HTMLElement;
+      mobileMenu.parentNode?.replaceChild(newMobileMenu, mobileMenu);
+
+      newMobileMenu.addEventListener('click', () => {
+        newMobileMenu.classList.toggle('active');
+        navWrapper.classList.toggle('active');
+        nav.classList.toggle('menu-open');
+      });
+    }
+  }
+
+  // Add scroll event listener
+  window.addEventListener('scroll', handleScroll);
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    handleScroll();
+    setupMobileMenu();
+  });
+
+  // Initialize after Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    handleScroll();
+    setupMobileMenu();
+  });
+</script>
 
 <style>
 	header {
@@ -156,7 +201,10 @@ const isHome = pathname === "/" || pathname === "";
 		margin: 5px 0;
 		background-color: currentColor;
 		transition: 0.3s;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+	}
+
+	.mobile-menu.active span {
+		background-color: white;
 	}
 
 	@media (max-width: 768px) {
@@ -171,24 +219,27 @@ const isHome = pathname === "/" || pathname === "";
 		.nav-wrapper {
 			position: fixed;
 			top: 0;
-			right: -100%;
+			left: 0;
+			right: 0;
 			bottom: 0;
 			width: 100%;
+			height: 100vh;
 			background: rgba(0, 0, 0, 0.95);
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			gap: 2rem;
-			transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1),
-						opacity 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+			transition: all 0.3s ease;
 			opacity: 0;
-			transform: translateX(100%);
+			visibility: hidden;
+			pointer-events: none;
 		}
 
 		.nav-wrapper.active {
 			opacity: 1;
-			transform: translateX(-100%);
+			visibility: visible;
+			pointer-events: auto;
 		}
 
 		.internal-links {
@@ -198,61 +249,28 @@ const isHome = pathname === "/" || pathname === "";
 
 		.internal-links a {
 			font-size: 2.2rem;
-			opacity: 0;
-			transform: translateX(50px);
-			transition: opacity 0.3s ease, transform 0.3s ease;
-			transition-delay: 0.2s;
 			color: white !important;
-		}
-
-		.nav-wrapper.active .internal-links a {
-			opacity: 1;
-			transform: translateX(0);
 		}
 
 		.social-links {
 			margin-top: 2rem;
-			opacity: 0;
-			transform: translateX(50px);
-			transition: opacity 0.3s ease, transform 0.3s ease;
-			transition-delay: 0.4s;
 		}
 
-		.nav-wrapper.active .social-links {
-			opacity: 1;
-			transform: translateX(0);
+		.social-links svg {
+			fill: white;
 		}
 
-		nav.menu-open .mobile-menu span:first-child {
+		/* Hamburger menu animation */
+		.mobile-menu.active span:first-child {
 			transform: translateY(7px) rotate(45deg);
 		}
 
-		nav.menu-open .mobile-menu span:nth-child(2) {
+		.mobile-menu.active span:nth-child(2) {
 			opacity: 0;
 		}
 
-		nav.menu-open .mobile-menu span:last-child {
+		.mobile-menu.active span:last-child {
 			transform: translateY(-7px) rotate(-45deg);
 		}
 	}
 </style>
-
-<script>
-	const header = document.querySelector('header');
-	window.addEventListener('scroll', () => {
-		if (window.scrollY > 50) {
-			header?.classList.add('scrolled');
-		} else {
-			header?.classList.remove('scrolled');
-		}
-	});
-
-	const mobileMenu = document.querySelector('.mobile-menu');
-	const nav = document.querySelector('nav');
-	const navWrapper = document.querySelector('.nav-wrapper');
-
-	mobileMenu?.addEventListener('click', () => {
-		nav?.classList.toggle('menu-open');
-		navWrapper?.classList.toggle('active');
-	});
-</script>

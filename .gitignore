@@ -1,0 +1,35 @@
+# Dependencias de Node
+node_modules/
+
+# Archivos de entorno
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Archivos de registro
+logs/
+*.log
+
+# Archivos generados por el sistema
+.DS_Store
+.idea/
+.vscode/
+
+# Archivos de compilación
+dist/
+build/
+
+# Archivos de dependencias
+bower_components/
+
+# Archivos de configuración local
+*.local
+
+# Archivos de caché
+.cache/
+
+# Archivos temporales
+*.tmp
+*.temp
